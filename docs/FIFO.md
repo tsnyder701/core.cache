@@ -19,7 +19,7 @@ To create a core.cache `FIFOCache` instance you should *always* use its associat
 
 *note: the default `:threshold` value is 32*
 
-The cache instance `C` is initialized with the seed map `{:a 1, :b 2}` and a queue threshold of `3`,  For your own purposes `2` is probably too small, but it's fine for the purpose of illustration.  Since the queue threshold was set to `3` adding one more element should evict the first element added `:a`; and indeed it does:
+The cache instance `C` is initialized with the seed map `{:a 1, :b 2, :c 3}` and a queue threshold of `3`,  For your own purposes `3` is probably too small, but it's fine for the purpose of illustration.  Since the queue threshold was set to `3` adding one more element should evict the first element added `:a`; and indeed it does:
 
 ```clojure
     (assoc C :d 42)
@@ -30,7 +30,7 @@ Likewise, adding two more elements should evict two values:
 
 ```clojure
     (assoc C :x 36 :z 138)
-    ;=> {:z 138, :x 36, :b 2}
+    ;=> {:z 138, :x 36, :d 42}
 ```
 
 Like all of the implementations in core.cache, `FIFOCache` instances operate like regular maps and are immutable. All caveats apply regarding the [proper usage patterns](./Using.md).
